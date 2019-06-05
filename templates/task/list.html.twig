@@ -21,9 +21,8 @@
                             {% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}
                         </button>
                     </form>
-                    <form action="{{ path('task_delete', {'id' : task.id }) }}">
-                        <button class="btn btn-danger btn-sm pull-right">Supprimer</button>
-                    </form>
+                    <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-info btn-sm pull-right">Modifier</a>
+                    <a href="{{ path('task_delete', {'id' : task.id }) }}" class="btn btn-danger btn-sm pull-right">Supprimer</a>
                 </div>
             </div>
         </div>
