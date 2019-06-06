@@ -53,7 +53,7 @@
             {% for key, messages in app.flashes() %}
                 <div class="alert alert-{{ key }} text-center" role="alert">
                     {% for message in messages %}
-                        {{ message|trans }}
+                        {{ message|trans|raw }}
                     {% endfor %}
                 </div>
             {% endfor %}
