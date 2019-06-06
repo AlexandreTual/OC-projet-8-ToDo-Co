@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="row">
-        <a href="{{ path('task_create') }}" class="btn btn-info pull-right ">Créer une tâche</a>
+        <a href="{{ path('task_create') }}" class="btn btn-info pull-right ">{{ 'page.list.task.button.create.task'|trans }}</a>
     </div>
     <div class="row">
         {% for task in tasks %}
@@ -22,15 +22,25 @@
                         <p>{{ task.content }}</p>
                     </div>
                     <div>
-                        <a href="{{ path('task_toggle', {'id' : task.id }) }}" class="btn btn-success btn-sm pull-right">{% if not task.isDone %}Marquer comme faite{% else %}Marquer non terminée{% endif %}</a>
-                        <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-info btn-sm pull-right">Modifier</a>
-                        <a href="{{ path('task_delete', {'id' : task.id }) }}" class="btn btn-danger btn-sm pull-right">Supprimer</a>
+                        <a href="{{ path('task_toggle', {'id' : task.id }) }}" class="btn btn-success btn-sm pull-right">
+                            {% if not task.isDone %}
+                                {{ 'page.list.task.button.task.open'|trans }}
+                            {% else %}
+                                {{ 'page.list.task.button.task.close'|trans }}
+                            {% endif %}
+                        </a>
+                        <a href="{{ path('task_edit', {'id': task.id}) }}" class="btn btn-info btn-sm pull-right">
+                            {{ 'page.list.task.button.update'|trans }}
+                        </a>
+                        <a href="{{ path('task_delete', {'id' : task.id }) }}" class="btn btn-danger btn-sm pull-right">
+                            {{ 'page.list.task.button.delete'|trans }}
+                        </a>
                     </div>
                 </div>
             </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
-                Il n'y a pas encore de tâche enregistrée.
+                {{ 'page.list.task.message.no.task'|trans }}
             </div>
         {% endfor %}
     </div>
