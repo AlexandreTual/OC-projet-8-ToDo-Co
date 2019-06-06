@@ -9,6 +9,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class TaskController extends AbstractController
 {
@@ -75,12 +76,13 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task)
+    public function toggleTaskAction(Task $task, ObjectManager $manager, TranslatorInterface $translator)
     {
         $task->toggle(!$task->isDone());
-        $this->getDoctrine()->getManager()->flush();
+        $manager->flush();
 
-            $this->addFlash('success', 'message.task.closed.success');
+        $translated = $translator->trans('message.task.closed.success', ['title' => $task->getTitle()]);
+        $this->addFlash('success', $translated);
 
         return $this->redirectToRoute('task_list');
     }
