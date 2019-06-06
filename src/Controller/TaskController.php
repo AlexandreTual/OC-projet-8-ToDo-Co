@@ -16,18 +16,16 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function create(Request $request)
+    public function create(Request $request,ObjectManager $manager)
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $task->setUser($this->getUser());
-            $em->persist($task);
-            $em->flush();
+            $manager->persist($task);
+            $manager->flush();
 
             $this->addFlash('success', 'message.task.add.success');
 
@@ -58,7 +56,6 @@ class TaskController extends AbstractController
     public function edit(Task $task, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -97,11 +94,10 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTask(Task $task)
+    public function deleteTask(Task $task, ObjectManager $manager)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        $manager->remove($task);
+        $manager->flush();
 
         $this->addFlash('success', 'message.task.delete.success');
 
