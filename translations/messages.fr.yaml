@@ -1,0 +1,46 @@
+page.create.task.button.return.task.list: Retour à la liste des tâches
+page.create.task.button.add: Ajouter
+form.task.title.label: Titre
+form.task.content.label: Contenu
+form.user.username.label: Nom d'utilisateur
+form.user.first_options.label: Mot de passe
+form.user.second_options.label: Tapez le mot de passe à nouveau
+form.user.email.label: Adresse mail
+page.list.task.create.task: Créer une tâche
+page.list.task.button.task.open: Marquer comme faite
+page.list.task.button.task.close: Marquer non terminée
+page.list.task.button.update: Modifier
+page.list.task.button.delete: Supprimer
+page.list.task.message.no.task: Il n'y a pas encore de tâche enregistrée.
+page.list.task.button.create.task: Créer une tâche
+word.website.name: To Do List app
+page.base.button.user.create: Créer un utilisateur
+page.base.button.logout: Se déconnecter
+page.base.button.login: Se connecter
+word.superb: Super !
+word.oops: Oops !
+word.copyright.OC: 'Copyright &copy; OpenClassrooms'
+page.edit.task.button.update: Modifier la tâche
+page.list.user.title: Liste des utilisateurs
+page.list.user.message.no.user: Il n'y a pas encore d'utilisateur enregistré.
+page.list.user.board.username: Nom d'utilisateur
+page.list.user.board.email: Email
+page.list.user.board.action: Actions
+page.list.user.button.edit: Edition
+page.list.user.board.index: "#"
+page.edit.user.title: Modifier
+page.edit.user.button.edit: Modifier
+page.create.user.title: Création d'un utilisateur
+page.create.user.button.add: Ajouter
+page.index.title: Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !
+page.index.button.add.task: Créer une nouvelle tâche
+page.index.button.list.task.open: Consulter la liste des tâches à faire
+page.index.button.list.task.close: Consulter la liste des tâches terminées
+message.user.add.success: L'utilisateur a bien été ajouté
+message.user.update.success: L'utilisateur a bien été modifié
+message.task.add.success: La tâche a été bien été ajoutée
+message.task.update.success: La tâche a bien été modifiée.
+message.task.closed.success: Vous avez fini une tâche.
+message.task.delete.success: La tâche a bien été supprimée.
+
+
