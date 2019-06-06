@@ -1,2 +1,2 @@
-message.task.closed.success: La tâche <strong>{title}</strong> est fini. Félicitation !!
-message.task.open.success: La tâche <strong>{title}</strong> doit être faites !
+message.task.completed.success: La tâche <strong>{title}</strong> est fini. Félicitation !!
+message.task.to.complete.success: La tâche <strong>{title}</strong> doit être faites !

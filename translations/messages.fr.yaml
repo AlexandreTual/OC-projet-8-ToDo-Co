@@ -11,7 +11,8 @@ page.list.task.button.task.open: Marquer comme faite
 page.list.task.button.task.close: Marquer non terminée
 page.list.task.button.update: Modifier
 page.list.task.button.delete: Supprimer
-page.list.task.message.no.task: Il n'y a pas encore de tâche enregistrée.
+page.list.task.message.no.task.to.complete: Il n'y a aucune tâche à faire.
+page.list.task.message.no.task.completed: Il n'y a aucune tache complété.
 page.list.task.button.create.task: Créer une tâche
 word.website.name: To Do List app
 page.base.button.user.create: Créer un utilisateur
@@ -34,12 +35,14 @@ page.create.user.title: Création d'un utilisateur
 page.create.user.button.add: Ajouter
 page.index.title: Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !
 page.index.button.add.task: Créer une nouvelle tâche
-page.index.button.list.task.open: Consulter la liste des tâches à faire
-page.index.button.list.task.close: Consulter la liste des tâches terminées
+page.index.button.list.task.to.complete: Consulter la liste des tâches à faire
+page.index.button.list.task.completed: Consulter la liste des tâches terminées
 message.user.add.success: L'utilisateur a bien été ajouté
 message.user.update.success: L'utilisateur a bien été modifié
 message.task.add.success: La tâche a été bien été ajoutée
 message.task.update.success: La tâche a bien été modifiée.
 message.task.delete.success: La tâche a bien été supprimée.
+page.list.task.to.complete: Liste des tâches a faire
+page.list.task.completed: Liste des tâches complété
 
 
