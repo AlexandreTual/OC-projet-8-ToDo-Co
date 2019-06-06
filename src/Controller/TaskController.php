@@ -14,19 +14,6 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class TaskController extends AbstractController
 {
     /**
-     * @Route("/tasks", name="task_list")
-     */
-    public function listAction(TaskRepository $repo)
-    {
-        return $this->render(
-            'task/list.html.twig', [
-            'tasks' => $repo->findBy([
-                'user' => $this->getUser()
-            ])
-        ]);
-    }
-
-    /**
      * @Route("/tasks/create", name="task_create")
      */
     public function createAction(Request $request)
@@ -48,6 +35,21 @@ class TaskController extends AbstractController
         }
 
         return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * @Route("/tasks/{isDone}", name="task_list", requirements={"isDone": "1|0"})
+     */
+    public function list(TaskRepository $repo, $isDone = false)
+    {
+        $template = ($isDone == false) ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
+        return $this->render(
+            $template, [
+            'tasks' => $repo->findBy([
+                'user' => $this->getUser(),
+                'isDone' => $isDone
+            ])
+        ]);
     }
 
     /**
@@ -82,10 +84,10 @@ class TaskController extends AbstractController
         $manager->flush();
 
         if ($task->isDone()) {
-            $translated = $translator->trans('message.task.closed.success', ['title' => $task->getTitle()]);
+            $translated = $translator->trans('message.task.completed.success', ['title' => $task->getTitle()]);
             $this->addFlash('success', $translated);
         } else {
-            $translated = $translator->trans('message.task.open.success', ['title' => $task->getTitle()]);
+            $translated = $translator->trans('message.task.to.complete.success', ['title' => $task->getTitle()]);
             $this->addFlash('warning', $translated);
         }
 
