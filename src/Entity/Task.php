@@ -24,13 +24,13 @@ class Task
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank(message="Vous devez saisir un titre.")
+     * @Assert\NotBlank(message="assert.not_blank.title")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank(message="Vous devez saisir du contenu.")
+     * @Assert\NotBlank(message="assert.not_blank.content")
      */
     private $content;
 

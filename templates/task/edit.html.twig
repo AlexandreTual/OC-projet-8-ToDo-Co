@@ -3,9 +3,8 @@
 {% block body %}
     <div class="row">
         {{ form_start(form, {'action' : path('task_edit', { 'id' : task.id })}) }}
-            {{ form_widget(form) }}
-
-            <button type="submit" class="btn btn-success pull-right">Modifier</button>
+        {{ form_widget(form) }}
+        <button type="submit" class="btn btn-success pull-right">{{ 'page.edit.task.button.update'|trans }}</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

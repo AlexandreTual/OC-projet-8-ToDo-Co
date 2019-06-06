@@ -1,0 +1,6 @@
+form.user.invalid_message: Les deux mots de passe doivent correspondre !
+assert.not_blank.title: Vous devez saisir un titre.
+assert.not_blank.content: Vous devez saisir du contenu.
+assert.not_blank.username: Vous devez saisir un nom d'utilisateur.
+assert.not_blank.email: Vous devez saisir une adresse email.
+assert.email: Le format de l'adresse n'est pas correcte.
