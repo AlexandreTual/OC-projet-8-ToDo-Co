@@ -41,7 +41,7 @@ class TaskController extends AbstractController
             $em->persist($task);
             $em->flush();
 
-            $this->addFlash('success', 'La tâche a été bien été ajoutée.');
+            $this->addFlash('success', 'message.task.add.success');
 
             return $this->redirectToRoute('task_list');
         }
@@ -61,7 +61,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $manager->flush();
 
-            $this->addFlash('success', 'La tâche a bien été modifiée.');
+            $this->addFlash('success', 'message.task.update.success');
 
             return $this->redirectToRoute('task_list');
         }
@@ -80,7 +80,7 @@ class TaskController extends AbstractController
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+            $this->addFlash('success', 'message.task.closed.success');
 
         return $this->redirectToRoute('task_list');
     }
@@ -94,7 +94,7 @@ class TaskController extends AbstractController
         $em->remove($task);
         $em->flush();
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        $this->addFlash('success', 'message.task.delete.success');
 
         return $this->redirectToRoute('task_list');
     }
