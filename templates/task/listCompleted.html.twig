@@ -7,7 +7,7 @@
         <a href="{{ path('task_create') }}" class="btn btn-info pull-right ">{{ 'page.list.task.button.create.task'|trans }}</a>
     </div>
     <div class="row">
-        <h1 class="text-center">{{ 'page.list.task.to.complete'|trans }}</h1>
+        <h1 class="text-center">{{ 'page.list.task.completed'|trans }}</h1>
         {% for task in tasks %}
             <div class="col-sm-4 col-lg-4 col-md-4">
                 <div class="thumbnail">
@@ -41,7 +41,7 @@
             </div>
         {% else %}
             <div class="alert alert-warning" role="alert">
-                {{ 'page.list.task.message.no.task.to.complete'|trans }}
+                {{ 'page.list.task.message.no.task.completed'|trans }}
             </div>
         {% endfor %}
     </div>
