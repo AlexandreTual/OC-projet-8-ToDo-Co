@@ -16,18 +16,16 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(Request $request)
+    public function create(Request $request,ObjectManager $manager)
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
             $task->setUser($this->getUser());
-            $em->persist($task);
-            $em->flush();
+            $manager->persist($task);
+            $manager->flush();
 
             $this->addFlash('success', 'message.task.add.success');
 
@@ -42,7 +40,8 @@ class TaskController extends AbstractController
      */
     public function list(TaskRepository $repo, $isDone = false)
     {
-        $template = ($isDone == false) ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
+        $template = false === $isDone ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
+
         return $this->render(
             $template, [
             'tasks' => $repo->findBy([
@@ -55,10 +54,9 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request, ObjectManager $manager)
+    public function edit(Task $task, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(TaskType::class, $task);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -78,18 +76,18 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task, ObjectManager $manager, TranslatorInterface $translator)
+    public function toggleTask(Task $task, ObjectManager $manager, TranslatorInterface $translator)
     {
         $task->toggle(!$task->isDone());
         $manager->flush();
 
-        if ($task->isDone()) {
-            $translated = $translator->trans('message.task.completed.success', ['title' => $task->getTitle()]);
-            $this->addFlash('success', $translated);
-        } else {
-            $translated = $translator->trans('message.task.to.complete.success', ['title' => $task->getTitle()]);
-            $this->addFlash('warning', $translated);
-        }
+        $this->addFlash(
+            $task->isDone() ? 'success' : 'warning',
+            $translator->trans(
+                $task->isDone() ? 'message.task.completed.success' : 'message.task.to.complete.success',
+                ['title' => $task->getTitle()]
+            )
+        );
 
         return $this->redirectToRoute('task_list');
     }
@@ -97,11 +95,10 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function deleteTask(Task $task, ObjectManager $manager)
     {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($task);
-        $em->flush();
+        $manager->remove($task);
+        $manager->flush();
 
         $this->addFlash('success', 'message.task.delete.success');
 
