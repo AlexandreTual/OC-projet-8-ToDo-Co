@@ -40,7 +40,8 @@ class TaskController extends AbstractController
      */
     public function list(TaskRepository $repo, $isDone = false)
     {
-        $template = ($isDone == false) ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
+        $template = false === $isDone ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
+
         return $this->render(
             $template, [
             'tasks' => $repo->findBy([
