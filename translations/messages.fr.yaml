@@ -44,5 +44,8 @@ message.task.update.success: La tâche a bien été modifiée.
 message.task.delete.success: La tâche a bien été supprimée.
 page.list.task.to.complete: Liste des tâches a faire
 page.list.task.completed: Liste des tâches complété
+role.user: Utilisateur
+role.admin: Administrateur
+form.user.roles.label: Rôle
 
 
