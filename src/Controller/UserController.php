@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditPasswordType;
 use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
@@ -50,15 +51,13 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/edit", name="user_edit")
      */
-    public function edit(User $user, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    public function edit(User $user, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(UserEditType::class, $user);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
             $manager->flush();
 
             $this->addFlash('success', 'message.user.update.success');
@@ -67,5 +66,34 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+    }
+
+    /**
+     * @Route("/users/{id}/edit/password", name="edit_password")
+     * @param User $user
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    {
+        $form = $this->createForm(EditPasswordType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $manager->flush();
+            $this->addFlash('success', 'message.user.edit.password.success');
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('user/editPassword.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
     }
 }
