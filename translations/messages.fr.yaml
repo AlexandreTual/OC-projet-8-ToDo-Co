@@ -27,7 +27,9 @@ page.list.user.message.no.user: Il n'y a pas encore d'utilisateur enregistré.
 page.list.user.board.username: Nom d'utilisateur
 page.list.user.board.email: Email
 page.list.user.board.action: Actions
-page.list.user.button.edit: Edition
+page.list.user.button.edit: Editer information
+page.user.password.button.edit: Editer mot de passe
+page.edit.password.button.edit: Enregistrer
 page.list.user.board.index: "#"
 page.edit.user.title: Modifier
 page.edit.user.button.edit: Modifier
@@ -42,10 +44,12 @@ message.user.update.success: L'utilisateur a bien été modifié
 message.task.add.success: La tâche a été bien été ajoutée
 message.task.update.success: La tâche a bien été modifiée.
 message.task.delete.success: La tâche a bien été supprimée.
+message.user.edit.password.success: Le mot de passe a été mis à jour.
 page.list.task.to.complete: Liste des tâches a faire
 page.list.task.completed: Liste des tâches complété
 role.user: Utilisateur
 role.admin: Administrateur
 form.user.roles.label: Rôle
+page.edit.password.title: Edition du mot de passe de
 
 
