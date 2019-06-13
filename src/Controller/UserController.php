@@ -3,14 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Form\EditPasswordType;
 use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserController extends AbstractController
 {
@@ -50,15 +53,13 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/edit", name="user_edit")
      */
-    public function edit(User $user, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    public function edit(User $user, Request $request, ObjectManager $manager)
     {
         $form = $this->createForm(UserEditType::class, $user);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
             $manager->flush();
 
             $this->addFlash('success', 'message.user.update.success');
@@ -67,5 +68,55 @@ class UserController extends AbstractController
         }
 
         return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+    }
+
+    /**
+     * @Route("/users/{id}/edit/password", name="edit_password")
+     * @param User $user
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    {
+        $form = $this->createForm(EditPasswordType::class, $user);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $password = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($password);
+            $manager->flush();
+            $this->addFlash('success', 'message.user.edit.password.success');
+
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('user/editPassword.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
+    }
+
+    /**
+     * @Route("/user/{id}/role/{role}", name="edit_role")
+     * @ParamConverter("user", options={"mapping": {"id": "id"}})
+     * @param $role
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function editRole($role, User $user, ObjectManager $manager, TranslatorInterface $translator)
+    {
+        $roles[] = $role;
+        $user->setRoles($roles);
+        $manager->flush();
+        $this->addFlash('success', $translator->trans('message.user.edit.role.success', [
+                'user' => $user->getUsername(),
+                'role' => 'ROLE_USER' === $user->getRoles()[0]? $translator->trans('word.user'):$translator->trans('word.admin')
+            ]
+        ));
+
+        return $this->redirectToRoute('user_list');
     }
 }
