@@ -8,7 +8,9 @@
 
     <div class="row">
         <a href="{{ path('task_create') }}" class="btn btn-success">{{ 'page.index.button.add.task'|trans }}</a>
-        <a href="{{ path('task_list', {'isDone': false}) }}" class="btn btn-info">{{ 'page.index.button.list.task.to.complete'|trans }}</a>
-        <a href="{{ path('task_list', {'isDone': true}) }}" class="btn btn-secondary">{{ 'page.index.button.list.task.completed'|trans }}</a>
+        <a href="{{ path('task_list', {'isDone': false}) }}"
+           class="btn btn-info">{{ 'page.index.button.list.task.to.complete'|trans }}</a>
+        <a href="{{ path('task_list', {'isDone': true}) }}"
+           class="btn btn-secondary">{{ 'page.index.button.list.task.completed'|trans }}</a>
     </div>
 {% endblock %}
