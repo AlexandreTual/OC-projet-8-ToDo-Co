@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block header_img %}<img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">{% endblock %}
+{% block header_img %}
+    <img class="slide-image" src="{{ asset('img/todolist_content.jpg') }}" alt="todo list">
+{% endblock %}
 
 {% block body %}
     <div class="row">
-        <a href="{{ path('task_create') }}" class="btn btn-info pull-right ">{{ 'page.list.task.button.create.task'|trans }}</a>
+        <a href="{{ path('task_create') }}" class="btn btn-info pull-right ">
+            {{ 'page.list.task.button.create.task'|trans }}
+        </a>
     </div>
     <div class="row">
         <h1 class="text-center">{{ 'page.list.task.completed'|trans }}</h1>

@@ -10,7 +10,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
@@ -19,16 +21,22 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/users", name="user_list")
+     * @param UserRepository $repo
+     * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function list(UserRepository $repo)
+    public function list(UserRepository $repo): Response
     {
         return $this->render('user/list.html.twig', ['users' => $repo->findAll()]);
     }
 
     /**
      * @Route("/users/create", name="user_create")
+     * @param Request $request
+     * @param UserPasswordEncoderInterface $encoder
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request , UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    public function create(Request $request , UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -52,8 +60,12 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/{id}/edit", name="user_edit")
+     * @param User $user
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(User $user, Request $request, ObjectManager $manager)
+    public function edit(User $user, Request $request, ObjectManager $manager): Response
     {
         $form = $this->createForm(UserEditType::class, $user);
 
@@ -78,7 +90,7 @@ class UserController extends AbstractController
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager)
+    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $form = $this->createForm(EditPasswordType::class, $user);
 
@@ -104,9 +116,11 @@ class UserController extends AbstractController
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
      * @param $role
      * @param User $user
+     * @param ObjectManager $manager
+     * @param TranslatorInterface $translator
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function editRole($role, User $user, ObjectManager $manager, TranslatorInterface $translator)
+    public function editRole($role, User $user, ObjectManager $manager, TranslatorInterface $translator): RedirectResponse
     {
         $roles[] = $role;
         $user->setRoles($roles);
