@@ -8,10 +8,12 @@ use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class UserController extends AbstractController
 {
@@ -95,5 +97,26 @@ class UserController extends AbstractController
             'form' => $form->createView(),
             'user' => $user
         ]);
+    }
+
+    /**
+     * @Route("/user/{id}/role/{role}", name="edit_role")
+     * @ParamConverter("user", options={"mapping": {"id": "id"}})
+     * @param $role
+     * @param User $user
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function editRole($role, User $user, ObjectManager $manager, TranslatorInterface $translator)
+    {
+        $roles[] = $role;
+        $user->setRoles($roles);
+        $manager->flush();
+        $this->addFlash('success', $translator->trans('message.user.edit.role.success', [
+                'user' => $user->getUsername(),
+                'role' => 'ROLE_USER' === $user->getRoles()[0]? $translator->trans('word.user'):$translator->trans('word.admin')
+            ]
+        ));
+
+        return $this->redirectToRoute('user_list');
     }
 }

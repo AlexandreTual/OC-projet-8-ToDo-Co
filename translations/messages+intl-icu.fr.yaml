@@ -1,2 +1,3 @@
 message.task.completed.success: La tâche <strong>{title}</strong> est fini. Félicitation !!
 message.task.to.complete.success: La tâche <strong>{title}</strong> doit être faites !
+message.user.edit.role.success: <strong>{user}</strong> est devenu <strong>{role}</strong> !

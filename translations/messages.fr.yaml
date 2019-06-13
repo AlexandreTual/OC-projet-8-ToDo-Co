@@ -26,6 +26,7 @@ page.list.user.title: Liste des utilisateurs
 page.list.user.message.no.user: Il n'y a pas encore d'utilisateur enregistré.
 page.list.user.board.username: Nom d'utilisateur
 page.list.user.board.email: Email
+page.list.user.board.role: Rôles
 page.list.user.board.action: Actions
 page.list.user.button.edit: Editer information
 page.user.password.button.edit: Editer mot de passe
@@ -51,5 +52,8 @@ role.user: Utilisateur
 role.admin: Administrateur
 form.user.roles.label: Rôle
 page.edit.password.title: Edition du mot de passe de
-
+word.role.management: Edition du rôle
+word.admin: Administrateur
+word.user: Utilisateur
+word.role: "Rôle: "
 

@@ -17,6 +17,7 @@
                     <th>{{ 'page.list.user.board.index'|trans }}</th>
                     <th>{{ 'page.list.user.board.username'|trans }}</th>
                     <th>{{ 'page.list.user.board.email'|trans }}</th>
+                    <th>{{ 'page.list.user.board.role'|trans }}</th>
                     <th>{{ 'page.list.user.board.action'|trans }}</th>
                 </tr>
                 </thead>
@@ -26,9 +27,26 @@
                         <th scope="row">{{ loop.index }}</th>
                         <td>{{ user.username }}</td>
                         <td>{{ user.email }}</td>
+                        <td>{% if 'ROLE_USER' == user.roles[0] %}
+                                {{ 'word.user'|trans }}
+                            {% elseif 'ROLE_ADMIN' == user.roles[0] %}
+                                {{ 'word.admin'|trans }}
+                            {% endif %}
+                        </td>
                         <td>
-                            <a href="{{ path('user_edit', {'id' : user.id}) }}" class="btn btn-success btn-sm">{{ 'page.list.user.button.edit'|trans }}</a>
-                            <a href="{{ path('edit_password', {'id' : user.id}) }}" class="btn btn-info btn-sm">{{ 'page.user.password.button.edit'|trans }}</a>
+                            <a href="{{ path('user_edit', {'id' : user.id}) }}"
+                               class="btn btn-success">{{ 'page.list.user.button.edit'|trans }}</a>
+                            <a href="{{ path('edit_password', {'id' : user.id}) }}"
+                               class="btn btn-info">{{ 'page.user.password.button.edit'|trans }}</a>
+                            {% if 'ROLE_USER' == user.roles[0] %}
+                                <a href="{{ path('edit_role', {'id': user.id, 'role': 'ROLE_ADMIN'}) }}"
+                                   class="btn btn-warning">{{ 'word.role'|trans }}{{ 'word.admin'|trans|upper }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('edit_role', {'id': user.id, 'role': 'ROLE_USER'}) }}"
+                                   class="btn btn-warning">{{ 'word.role'|trans }}{{ 'word.user'|trans|upper }}
+                                </a>
+                            {% endif %}
                         </td>
                     </tr>
                 {% endfor %}
