@@ -11,7 +11,7 @@ page.list.task.button.task.open: Marquer comme faite
 page.list.task.button.task.close: Marquer non terminée
 page.list.task.button.update: Modifier
 page.list.task.button.delete: Supprimer
-page.list.task.message.no.task.to.complete: Il n'y a aucune tâche à faire.
+page.list.task.message.no.task.to.complete: Il n'y a aucune tâche a faire.
 page.list.task.message.no.task.completed: Il n'y a aucune tache complété.
 page.list.task.button.create.task: Créer une tâche
 word.website.name: To Do List app
@@ -56,4 +56,8 @@ word.role.management: Edition du rôle
 word.admin: Administrateur
 word.user: Utilisateur
 word.role: "Rôle: "
+word.login: Connexion
+incorrect password: Mot de passe incorrect
+form.login.username.label: Votre nom
+form.login.password.label: Mot de passe
 
