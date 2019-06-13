@@ -143,7 +143,7 @@ class User implements UserInterface
 
     public function setRoles($roles): self
     {
-        if(is_array($roles)) {
+        if (is_array($roles)) {
             $this->roles = $roles;
         } else {
             $this->roles = [$roles];

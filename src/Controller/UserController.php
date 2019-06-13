@@ -36,7 +36,7 @@ class UserController extends AbstractController
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request , UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
+    public function create(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -90,7 +90,7 @@ class UserController extends AbstractController
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
+    public function editPassword(User $user, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $form = $this->createForm(EditPasswordType::class, $user);
 
@@ -125,7 +125,9 @@ class UserController extends AbstractController
         $roles[] = $role;
         $user->setRoles($roles);
         $manager->flush();
-        $this->addFlash('success', $translator->trans('message.user.edit.role.success', [
+        $this->addFlash('success', $translator->trans(
+            'message.user.edit.role.success',
+            [
                 'user' => $user->getUsername(),
                 'role' => 'ROLE_USER' === $user->getRoles()[0]? $translator->trans('word.user'):$translator->trans('word.admin')
             ]
