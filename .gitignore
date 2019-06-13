@@ -1,4 +1,3 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -19,3 +18,9 @@
 
 ###> phpStorm ###
 .idea/
+###> phpStorm ###
+
+###> php-cs-fixer ###
+.php_cs.cache
+web/
+###> php-cs-fixer ###

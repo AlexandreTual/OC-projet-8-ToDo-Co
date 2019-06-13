@@ -21,7 +21,9 @@ class UserController extends AbstractController
 {
     /**
      * @Route("/users", name="user_list")
+     *
      * @param UserRepository $repo
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function list(UserRepository $repo): Response
@@ -31,12 +33,14 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/create", name="user_create")
-     * @param Request $request
+     *
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $encoder
-     * @param ObjectManager $manager
+     * @param ObjectManager                $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request , UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
+    public function create(Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
@@ -60,9 +64,11 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/{id}/edit", name="user_edit")
-     * @param User $user
-     * @param Request $request
+     *
+     * @param User          $user
+     * @param Request       $request
      * @param ObjectManager $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(User $user, Request $request, ObjectManager $manager): Response
@@ -84,13 +90,15 @@ class UserController extends AbstractController
 
     /**
      * @Route("/users/{id}/edit/password", name="edit_password")
-     * @param User $user
-     * @param Request $request
+     *
+     * @param User                         $user
+     * @param Request                      $request
      * @param UserPasswordEncoderInterface $encoder
-     * @param ObjectManager $manager
+     * @param ObjectManager                $manager
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editPassword(User $user,Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
+    public function editPassword(User $user, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
         $form = $this->createForm(EditPasswordType::class, $user);
 
@@ -107,17 +115,19 @@ class UserController extends AbstractController
 
         return $this->render('user/editPassword.html.twig', [
             'form' => $form->createView(),
-            'user' => $user
+            'user' => $user,
         ]);
     }
 
     /**
      * @Route("/user/{id}/role/{role}", name="edit_role")
      * @ParamConverter("user", options={"mapping": {"id": "id"}})
+     *
      * @param $role
-     * @param User $user
-     * @param ObjectManager $manager
+     * @param User                $user
+     * @param ObjectManager       $manager
      * @param TranslatorInterface $translator
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function editRole($role, User $user, ObjectManager $manager, TranslatorInterface $translator): RedirectResponse
@@ -125,9 +135,11 @@ class UserController extends AbstractController
         $roles[] = $role;
         $user->setRoles($roles);
         $manager->flush();
-        $this->addFlash('success', $translator->trans('message.user.edit.role.success', [
+        $this->addFlash('success', $translator->trans(
+            'message.user.edit.role.success',
+            [
                 'user' => $user->getUsername(),
-                'role' => 'ROLE_USER' === $user->getRoles()[0]? $translator->trans('word.user'):$translator->trans('word.admin')
+                'role' => 'ROLE_USER' === $user->getRoles()[0] ? $translator->trans('word.user') : $translator->trans('word.admin'),
             ]
         ));
 

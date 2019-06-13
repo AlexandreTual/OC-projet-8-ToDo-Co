@@ -17,11 +17,13 @@ class TaskController extends AbstractController
 {
     /**
      * @Route("/tasks/create", name="task_create")
-     * @param Request $request
+     *
+     * @param Request       $request
      * @param ObjectManager $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request,ObjectManager $manager): Response
+    public function create(Request $request, ObjectManager $manager): Response
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -42,8 +44,10 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/tasks/{isDone}", name="task_list", requirements={"isDone": "1|0"})
+     *
      * @param TaskRepository $repo
-     * @param bool $isDone
+     * @param bool           $isDone
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function list(TaskRepository $repo, $isDone = false): Response
@@ -51,19 +55,23 @@ class TaskController extends AbstractController
         $template = false === $isDone ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
 
         return $this->render(
-            $template, [
+            $template,
+            [
             'tasks' => $repo->findBy([
                 'user' => $this->getUser(),
-                'isDone' => $isDone
-            ])
-        ]);
+                'isDone' => $isDone,
+            ]),
+        ]
+        );
     }
 
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
-     * @param Task $task
-     * @param Request $request
+     *
+     * @param Task          $task
+     * @param Request       $request
      * @param ObjectManager $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function edit(Task $task, Request $request, ObjectManager $manager): Response
@@ -87,9 +95,11 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
-     * @param Task $task
-     * @param ObjectManager $manager
+     *
+     * @param Task                $task
+     * @param ObjectManager       $manager
      * @param TranslatorInterface $translator
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function toggleTask(Task $task, ObjectManager $manager, TranslatorInterface $translator): RedirectResponse
@@ -110,8 +120,10 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
-     * @param Task $task
+     *
+     * @param Task          $task
      * @param ObjectManager $manager
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function deleteTask(Task $task, ObjectManager $manager): RedirectResponse
