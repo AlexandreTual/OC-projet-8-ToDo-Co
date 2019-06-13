@@ -18,7 +18,7 @@ class EditPasswordType extends AbstractType
                 'type' => PasswordType::class,
                 'invalid_message' => 'form.user.invalid_message',
                 'required' => true,
-                'first_options'  => ['label' => 'form.user.first_options.label'],
+                'first_options' => ['label' => 'form.user.first_options.label'],
                 'second_options' => ['label' => 'form.user.second_options.label'],
             ])
         ;
