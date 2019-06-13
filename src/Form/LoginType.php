@@ -16,6 +16,7 @@ class LoginType extends AbstractType
 
     /**
      * LoginType constructor.
+     *
      * @param null $lasUsername
      */
     public function __construct($lastUsername = null)
@@ -25,7 +26,7 @@ class LoginType extends AbstractType
 
     /**
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -35,7 +36,7 @@ class LoginType extends AbstractType
                 'attr' => [
                     'value' => $this->lastUsername,
                     'autofocus' => true,
-                ]
+                ],
             ])
             ->add('_password', PasswordType::class, [
                 'label' => 'form.login.password.label',

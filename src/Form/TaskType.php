@@ -15,10 +15,10 @@ class TaskType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
-                'label' => 'form.task.title.label'
+                'label' => 'form.task.title.label',
             ])
             ->add('content', TextareaType::class, [
-                'label' => 'form.task.content.label'
+                'label' => 'form.task.content.label',
             ])
             //->add('author') ===> must be the user authenticated
         ;
