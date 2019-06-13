@@ -21,7 +21,7 @@ class TaskController extends AbstractController
      * @param ObjectManager $manager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function create(Request $request,ObjectManager $manager): Response
+    public function create(Request $request, ObjectManager $manager): Response
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
@@ -51,12 +51,14 @@ class TaskController extends AbstractController
         $template = false === $isDone ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
 
         return $this->render(
-            $template, [
+            $template,
+            [
             'tasks' => $repo->findBy([
                 'user' => $this->getUser(),
                 'isDone' => $isDone
             ])
-        ]);
+        ]
+        );
     }
 
     /**

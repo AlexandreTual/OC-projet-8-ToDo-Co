@@ -19,3 +19,4 @@
 
 ###> phpStorm ###
 .idea/
+.php_cs.cache
