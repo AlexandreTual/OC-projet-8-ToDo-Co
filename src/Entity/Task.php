@@ -45,22 +45,36 @@ class Task
      */
     private $user;
 
+    /**
+     * Task constructor.
+     * @throws \Exception
+     */
     public function __construct()
     {
         $this->createdAt = new \Datetime();
         $this->isDone = false;
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return \DateTimeInterface|null
+     */
     public function getCreatedAt(): ?\DateTimeInterface
     {
         return $this->createdAt;
     }
 
+    /**
+     * @param \DateTimeInterface $createdAt
+     * @return Task
+     */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
@@ -68,11 +82,18 @@ class Task
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getTitle(): ?string
     {
         return $this->title;
     }
 
+    /**
+     * @param string $title
+     * @return Task
+     */
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -80,11 +101,18 @@ class Task
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getContent(): ?string
     {
         return $this->content;
     }
 
+    /**
+     * @param string $content
+     * @return Task
+     */
     public function setContent(string $content): self
     {
         $this->content = $content;
@@ -92,21 +120,34 @@ class Task
         return $this;
     }
 
+    /**
+     * @return bool
+     */
     public function isDone()
     {
         return $this->isDone;
     }
 
+    /**
+     * @param $flag
+     */
     public function toggle($flag)
     {
         $this->isDone = $flag;
     }
 
+    /**
+     * @return User|null
+     */
     public function getUser(): ?User
     {
         return $this->user;
     }
 
+    /**
+     * @param User|null $user
+     * @return Task
+     */
     public function setUser(?User $user): self
     {
         $this->user = $user;
