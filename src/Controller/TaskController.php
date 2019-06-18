@@ -13,6 +13,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class TaskController extends AbstractController
 {
     /**
@@ -57,11 +60,11 @@ class TaskController extends AbstractController
         return $this->render(
             $template,
             [
-            'tasks' => $repo->findBy([
-                'user' => $this->getUser(),
-                'isDone' => $isDone,
-            ]),
-        ]
+                'tasks' => $repo->findBy([
+                    'user' => $this->getUser(),
+                    'isDone' => $isDone,
+                ]),
+            ]
         );
     }
 
@@ -87,10 +90,13 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_list');
         }
 
-        return $this->render('task/edit.html.twig', [
-            'form' => $form->createView(),
-            'task' => $task,
-        ]);
+        return $this->render(
+            'task/edit.html.twig',
+            [
+                'form' => $form->createView(),
+                'task' => $task,
+            ]
+        );
     }
 
     /**

@@ -17,6 +17,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * @codeCoverageIgnore
+ */
 class UserController extends AbstractController
 {
     /**
@@ -113,10 +116,13 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/editPassword.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user,
-        ]);
+        return $this->render(
+            'user/editPassword.html.twig',
+            [
+                'form' => $form->createView(),
+                'user' => $user,
+            ]
+        );
     }
 
     /**
