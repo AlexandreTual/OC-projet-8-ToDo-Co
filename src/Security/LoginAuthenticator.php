@@ -17,6 +17,12 @@ use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticato
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
+/**
+ * Class LoginAuthenticator
+ * @package App\Security
+ *
+ * @codeCoverageIgnore
+ */
 class LoginAuthenticator extends AbstractFormLoginAuthenticator
 {
     use TargetPathTrait;

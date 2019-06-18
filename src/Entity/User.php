@@ -30,6 +30,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank()
      */
     private $password;
 
@@ -50,21 +51,34 @@ class User implements UserInterface
      */
     private $roles;
 
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
         $this->tasks = new ArrayCollection();
     }
 
+    /**
+     * @return int|null
+     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
     public function getUsername(): ?string
     {
         return $this->username;
     }
 
+    /**
+     * @param string $username
+     * @return User
+     */
     public function setUsername(string $username): self
     {
         $this->username = $username;
@@ -72,11 +86,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getPassword(): ?string
     {
         return $this->password;
     }
 
+    /**
+     * @param string $password
+     * @return User
+     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -84,11 +105,18 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
+    /**
+     * @param string $email
+     * @return User
+     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
@@ -96,18 +124,30 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @return mixed
+     */
     public function getRoles()
     {
         return $this->roles;
     }
 
+    /**
+     * @return string|null
+     */
     public function getSalt()
     {
         return null;
     }
 
+    /**
+     * @codeCoverageIgnore
+     *
+     * @return null
+     */
     public function eraseCredentials()
     {
+        return null;
     }
 
     /**
@@ -118,6 +158,10 @@ class User implements UserInterface
         return $this->tasks;
     }
 
+    /**
+     * @param Task $task
+     * @return User
+     */
     public function addTask(Task $task): self
     {
         if (!$this->tasks->contains($task)) {
@@ -128,6 +172,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param Task $task
+     * @return User
+     */
     public function removeTask(Task $task): self
     {
         if ($this->tasks->contains($task)) {
@@ -141,6 +189,10 @@ class User implements UserInterface
         return $this;
     }
 
+    /**
+     * @param $roles
+     * @return User
+     */
     public function setRoles($roles): self
     {
         if (is_array($roles)) {
