@@ -27,6 +27,8 @@ security:
         ROLE_ADMIN:       ROLE_USER
 
     access_control:
+        - { path: ^/users/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/users, roles: ROLE_ADMIN }
         - { path: ^/, roles: ROLE_USER }
+
