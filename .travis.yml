@@ -4,4 +4,4 @@ php:
 
 script:
   - composer install
-  - bin/phpunit
+  - bin/phpunit --ignore=tests/Controller/
