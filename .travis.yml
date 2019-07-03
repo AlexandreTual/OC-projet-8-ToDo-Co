@@ -12,8 +12,8 @@ env:
 install:
   - composer install
   - cp .env.travis .env
-  - bin/console doctrine:database:create --env:test
-  - bin/console doctrine:schema:update --env:test
+  - bin/console doctrine:database:create --env:prod
+  - bin/console doctrine:schema:update --env:prod
 
 script:
   - bin/phpunit
