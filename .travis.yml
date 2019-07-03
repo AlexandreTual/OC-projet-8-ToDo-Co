@@ -2,6 +2,17 @@ language: php
 php:
   - '7.2.0'
 
+before_install:
+  - sh -c "mysql -e  'CREATE DATABASE todo_test;'"
+  - echo "
+      APP_ENV=dev
+      APP_SECRET=7c3d2ebd804f51048be5bd54835a3bb0
+
+      DATABASE_URL=mysql://Levyathan:M@ndoa501@127.0.0.1:3306/todo
+
+      MAILER_URL=null://localhost
+      " > /.env
+
 script:
   - composer install
   - bin/phpunit
