@@ -5,13 +5,10 @@ php:
 services:
   - mysql
 
-env:
-  global:
-    - SYMFONY_VERSION="4.3.*" DB=mysql
-
 install:
   - composer install
-  - cp .env.travis .env
+
+before_script:
   - bin/console doctrine:database:create
   - bin/console doctrine:schema:update
 
