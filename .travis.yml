@@ -9,6 +9,7 @@ install:
   - composer install
 
 before_script:
+  - cp .env.travis .env
   - bin/console doctrine:database:create
   - bin/console doctrine:schema:update
 
