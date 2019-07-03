@@ -7,6 +7,7 @@ services:
 
 install:
   - composer install
+<<<<<<< HEAD
 
 before_script:
   - cp .env.travis .env
@@ -16,3 +17,6 @@ before_script:
 
 script:
   - bin/phpunit
+=======
+  - bin/phpunit --ignore=tests/Controller/
+>>>>>>> ignore test functionnal in travis
