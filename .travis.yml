@@ -12,7 +12,7 @@ before_script:
   - cp .env.travis .env
   - bin/console doctrine:database:create
   - bin/console doctrine:schema:create
-  - bin/console doctrine:fixtures:load
+  - bin/console doctrine:fixtures:load -n
 
 script:
   - bin/phpunit
