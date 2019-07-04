@@ -17,6 +17,4 @@ before_script:
 
 script:
   - bin/phpunit
-=======
-  - bin/phpunit --ignore=tests/Controller/
->>>>>>> ignore test functionnal in travis
+
