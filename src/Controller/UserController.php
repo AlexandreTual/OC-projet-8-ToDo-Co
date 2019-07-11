@@ -8,7 +8,9 @@ use App\Form\UserType;
 use App\Form\UserEditType;
 use App\Repository\UserRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,6 +28,8 @@ class UserController extends AbstractController
      * @Route("/users", name="user_list")
      *
      * @param UserRepository $repo
+     *
+     * @IsGranted({"ROLE_ADMIN"})
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -59,7 +63,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'message.user.add.success');
 
-            return $this->redirectToRoute('user_list');
+            return $this->redirectToRoute('login');
         }
 
         return $this->render('user/create.html.twig', ['form' => $form->createView()]);
@@ -72,11 +76,13 @@ class UserController extends AbstractController
      * @param Request       $request
      * @param ObjectManager $manager
      *
+     * @Security("is_granted('ROLE_ADMIN') or (user.GetId() === userForEdit.getId())")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function edit(User $user, Request $request, ObjectManager $manager): Response
+    public function edit(User $userForEdit, Request $request, ObjectManager $manager): Response
     {
-        $form = $this->createForm(UserEditType::class, $user);
+        $form = $this->createForm(UserEditType::class, $userForEdit);
 
         $form->handleRequest($request);
 
@@ -88,7 +94,7 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $userForEdit]);
     }
 
     /**
@@ -99,17 +105,19 @@ class UserController extends AbstractController
      * @param UserPasswordEncoderInterface $encoder
      * @param ObjectManager                $manager
      *
+     * @Security("is_granted('ROLE_ADMIN') or (user.GetId() === userForEdit.getId())")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editPassword(User $user, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
+    public function editPassword(User $userForEdit, Request $request, UserPasswordEncoderInterface $encoder, ObjectManager $manager): Response
     {
-        $form = $this->createForm(EditPasswordType::class, $user);
+        $form = $this->createForm(EditPasswordType::class, $userForEdit);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            $password = $encoder->encodePassword($userForEdit, $userForEdit->getPassword());
+            $userForEdit->setPassword($password);
             $manager->flush();
             $this->addFlash('success', 'message.user.edit.password.success');
 
@@ -120,7 +128,7 @@ class UserController extends AbstractController
             'user/editPassword.html.twig',
             [
                 'form' => $form->createView(),
-                'user' => $user,
+                'user' => $userForEdit,
             ]
         );
     }
