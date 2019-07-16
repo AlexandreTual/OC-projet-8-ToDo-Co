@@ -6,6 +6,10 @@ use App\Entity\User;
 use App\Form\UserEditType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class UserEditTypeTest extends TypeTestCase
 {
     public function testForm()
@@ -20,7 +24,8 @@ class UserEditTypeTest extends TypeTestCase
 
         $object
             ->setUsername('alex')
-            ->setEmail('tual.alexandre@gmail.com');
+            ->setEmail('tual.alexandre@gmail.com')
+        ;
 
         $form = $this->factory->create(UserEditType::class, $objectToCompare);
         $form->submit($formData);

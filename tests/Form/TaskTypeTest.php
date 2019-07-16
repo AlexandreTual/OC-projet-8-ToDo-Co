@@ -6,6 +6,10 @@ use App\Entity\Task;
 use App\Form\TaskType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class TaskTypeTest extends TypeTestCase
 {
     public function testForm()
@@ -23,7 +27,8 @@ class TaskTypeTest extends TypeTestCase
         $object
             ->setTitle('un super titre')
             ->setContent('un contenu riche')
-            ->setCreatedAt($datetime);
+            ->setCreatedAt($datetime)
+        ;
 
         $form = $this->factory->create(TaskType::class, $objectToCompare);
         $form->submit($formData);

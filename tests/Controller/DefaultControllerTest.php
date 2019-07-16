@@ -8,7 +8,10 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-
+/**
+ * @internal
+ * @coversNothing
+ */
 class DefaultControllerTest extends WebTestCase
 {
     /**
@@ -18,7 +21,7 @@ class DefaultControllerTest extends WebTestCase
 
     protected function setUp(): void
     {
-        $this->client =self::createClient();
+        $this->client = self::createClient();
     }
 
     public function testHomepageLogout()
@@ -36,7 +39,6 @@ class DefaultControllerTest extends WebTestCase
         self::assertContains('/tasks/create', $crawler->filter('a')->extract(['href']));
         self::assertContains('/tasks', $crawler->filter('a')->extract(['href']));
         self::assertContains('/tasks/1', $crawler->filter('a')->extract(['href']));
-
     }
 
     public function logInUser()
