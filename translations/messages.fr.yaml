@@ -46,6 +46,7 @@ message.task.add.success: La tâche a été bien été ajoutée
 message.task.update.success: La tâche a bien été modifiée.
 message.task.delete.success: La tâche a bien été supprimée.
 message.user.edit.password.success: Le mot de passe a été mis à jour.
+message.error.login: L'identifiant ou le mot de passe est incorrect
 page.list.task.to.complete: Liste des tâches a faire
 page.list.task.completed: Liste des tâches complété
 role.user: Utilisateur
