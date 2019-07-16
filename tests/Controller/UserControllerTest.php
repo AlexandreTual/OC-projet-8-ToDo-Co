@@ -67,7 +67,7 @@ class UserControllerTest extends WebTestCase
     public function testAccessDeniedForUserPageListUser()
     {
         $this->logIn('user', 'password');
-        $crawler = $this->client->request('GET', '/users');
+        $this->client->request('GET', '/users');
 
         self::assertSame(Response::HTTP_FORBIDDEN, $this->client->getResponse()->getStatusCode());
     }
