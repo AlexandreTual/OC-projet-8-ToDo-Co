@@ -1,64 +1,63 @@
-page.create.task.button.return.task.list: Retour à la liste des tâches
-page.create.task.button.add: Ajouter
-form.task.title.label: Titre
-form.task.content.label: Contenu
-form.user.username.label: Nom d'utilisateur
-form.user.first_options.label: Mot de passe
-form.user.second_options.label: Tapez le mot de passe à nouveau
-form.user.email.label: Adresse mail
-page.list.task.create.task: Créer une tâche
-page.list.task.button.task.open: Marquer comme faite
-page.list.task.button.task.close: Marquer non terminée
-page.list.task.button.update: Modifier
-page.list.task.button.delete: Supprimer
-page.list.task.message.no.task.to.complete: Il n'y a aucune tâche a faire.
-page.list.task.message.no.task.completed: Il n'y a aucune tache complété.
-page.list.task.button.create.task: Créer une tâche
-word.website.name: To Do List app
-page.base.button.user.create: Créer un utilisateur
-page.base.button.logout: Se déconnecter
-page.base.button.login: Se connecter
-word.superb: Super !
-word.oops: Oops !
-word.copyright.OC: 'Copyright &copy; OpenClassrooms'
-page.edit.task.button.update: Modifier la tâche
-page.list.user.title: Liste des utilisateurs
-page.list.user.message.no.user: Il n'y a pas encore d'utilisateur enregistré.
-page.list.user.board.username: Nom d'utilisateur
-page.list.user.board.email: Email
-page.list.user.board.role: Rôles
-page.list.user.board.action: Actions
-page.list.user.button.edit: Editer information
-page.user.password.button.edit: Editer mot de passe
-page.edit.password.button.edit: Enregistrer
-page.list.user.board.index: "#"
-page.edit.user.title: Modifier
-page.edit.user.button.edit: Modifier
-page.create.user.title: Création d'un utilisateur
-page.create.user.button.add: Ajouter
-page.index.title: Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !
-page.index.button.add.task: Créer une nouvelle tâche
-page.index.button.list.task.to.complete: Consulter la liste des tâches à faire
-page.index.button.list.task.completed: Consulter la liste des tâches terminées
-message.user.add.success: L'utilisateur a bien été ajouté
-message.user.update.success: L'utilisateur a bien été modifié
-message.task.add.success: La tâche a été bien été ajoutée
-message.task.update.success: La tâche a bien été modifiée.
-message.task.delete.success: La tâche a bien été supprimée.
-message.user.edit.password.success: Le mot de passe a été mis à jour.
-message.error.login: L'identifiant ou le mot de passe est incorrect
-page.list.task.to.complete: Liste des tâches a faire
-page.list.task.completed: Liste des tâches complété
-role.user: Utilisateur
-role.admin: Administrateur
-form.user.roles.label: Rôle
-page.edit.password.title: Edition du mot de passe de
-word.role.management: Edition du rôle
-word.admin: Administrateur
-word.user: Utilisateur
-word.role: "Rôle: "
-word.login: Connexion
-incorrect password: Mot de passe incorrect
-form.login.username.label: Votre nom
 form.login.password.label: Mot de passe
-
+form.login.username.label: Votre nom
+form.task.content.label: Contenu
+form.task.title.label: Titre
+form.user.email.label: Adresse mail
+form.user.first_options.label: Mot de passe
+form.user.roles.label: Rôle
+form.user.second_options.label: Tapez le mot de passe à nouveau
+form.user.username.label: Nom d'utilisateur
+incorrect password: Mot de passe incorrect
+message.error.login: L'identifiant ou le mot de passe est incorrect
+message.task.add.success: La tâche a été bien été ajoutée
+message.task.delete.success: La tâche a bien été supprimée.
+message.task.update.success: La tâche a bien été modifiée.
+message.user.add.success: L'utilisateur a bien été ajouté
+message.user.edit.password.success: Le mot de passe a été mis à jour.
+message.user.update.success: L'utilisateur a bien été modifié
+page.base.button.login: Se connecter
+page.base.button.logout: Se déconnecter
+page.base.button.user.create: Créer un utilisateur
+page.create.task.button.add: Ajouter
+page.create.task.button.return.task.list: Retour à la liste des tâches
+page.create.user.button.add: Ajouter
+page.create.user.title: Création d'un utilisateur
+page.edit.password.button.edit: Enregistrer
+page.edit.password.title: Edition du mot de passe de
+page.edit.task.button.update: Modifier la tâche
+page.edit.user.button.edit: Modifier
+page.edit.user.title: Modifier
+page.index.button.add.task: Créer une nouvelle tâche
+page.index.button.list.task.completed: Consulter la liste des tâches terminées
+page.index.button.list.task.to.complete: Consulter la liste des tâches à faire
+page.index.title: Bienvenue sur Todo List, l'application vous permettant de gérer l'ensemble de vos tâches sans effort !
+page.list.task.button.create.task: Créer une tâche
+page.list.task.button.delete: Supprimer
+page.list.task.button.task.close: Marquer non terminée
+page.list.task.button.task.open: Marquer comme faite
+page.list.task.button.update: Modifier
+page.list.task.completed: Liste des tâches complété
+page.list.task.create.task: Créer une tâche
+page.list.task.message.no.task.completed: Il n'y a aucune tache complété.
+page.list.task.message.no.task.to.complete: Il n'y a aucune tâche a faire.
+page.list.task.to.complete: Liste des tâches a faire
+page.list.user.board.action: Actions
+page.list.user.board.email: Email
+page.list.user.board.index: "#"
+page.list.user.board.role: Rôles
+page.list.user.board.username: Nom d'utilisateur
+page.list.user.button.edit: Editer information
+page.list.user.message.no.user: Il n'y a pas encore d'utilisateur enregistré.
+page.list.user.title: Liste des utilisateurs
+page.user.password.button.edit: Editer mot de passe
+role.admin: Administrateur
+role.user: Utilisateur
+word.admin: Administrateur
+word.copyright.OC: 'Copyright &copy; OpenClassrooms'
+word.login: Connexion
+word.oops: Oops !
+word.role.management: Edition du rôle
+word.role: "Rôle: "
+word.superb: Super !
+word.user: Utilisateur
+word.website.name: To Do List app
