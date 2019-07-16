@@ -87,34 +87,47 @@ class UserControllerTest extends WebTestCase
         self::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
 
+    public function testCreateUserOk()
+    {
+        $crawler = $this->client->request('GET', '/users/create');
+
+        $form = $crawler->selectButton('Ajouter')->form();
+        $form['user[username]'] = 'userTestCreate';
+        $form['user[password][first]'] = 'password';
+        $form['user[password][second]'] = 'password';
+        $form['user[email]'] = 'userTestCreate@gmail.com';
+        $form['user[roles]'] = 'ROLE_USER';
+        $this->client->submit($form);
+        $crawler = $this->client->followRedirect();
+
+        self::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
+        self::assertSame(1, $crawler->filter('html:contains("L\'utilisateur a bien été ajouté")')->count());
+    }
+
+    public function testErrorCreateUser()
+    {
+        $crawler = $this->client->request('GET', '/users/create');
+
+        $form = $crawler->selectButton('Ajouter')->form();
+        $form['user[username]'] = 'user';
+        $form['user[password][first]'] = 'password';
+        $form['user[password][second]'] = 'badPassword';
+        $form['user[email]'] = 'user@todo-co.com';
+        $form['user[roles]'] = 'ROLE_USER';
+        $crawler = $this->client->submit($form);
+
+        // nom utilisateur déjà présent en BDD
+        self::assertSame(1, $crawler->filter('html:contains("Cette valeur est déjà utilisée.")')->count());
+        // les deux mots de passe ne sont pas identique
+        self::assertSame(1, $crawler->filter('html:contains("Les deux mots de passe doivent correspondre !")')->count());
+        // email déjà présent en base de donnée
+        self::assertSame(1, $crawler->filter('html:contains("Cette valeur est déjà utilisée.")')->count());
+    }
+
     private function getContainer()
     {
         self::bootKernel();
         // gets the special container that allows fetching private services
         return self::$container;
     }
-
-    /*public function testCreationUser()
-    {
-        $this->logIn('user', 'password');
-        $crawler = $this->client->request('GET', '/');
-
-        self::assertSame(1, $crawler->filter('html:contains("Créer un utilisateur")')->count());
-
-        $link = $crawler->selectLink('Créer un utilisateur')->link();
-        $crawler = $this->client->click($link);
-
-        $form = $crawler->selectButton('Ajouter')->form();
-        $form['user[username]'] = 'userTest';
-        $form['user[password][first]'] = 'password';
-        $form['user[password][second]'] = 'password';
-        $form['user[email]'] = 'userTest@gmail.com';
-        $form['user[roles]'] = 'ROLE_USER';
-        $this->client->submit($form);
-        $this->client->followRedirect();
-
-        echo $this->client->getResponse()->getContent();
-
-        self::assertSame(1,$crawler->filter('html:contains("L\'utilisateur a bien été ajouté")')->html());
-    }*/
 }
