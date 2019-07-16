@@ -6,6 +6,7 @@ use App\Entity\Task;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
 use Doctrine\Common\Persistence\ObjectManager;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -57,13 +58,13 @@ class TaskController extends AbstractController
     {
         $template = false === $isDone ? 'task/list.html.twig' : 'task/listCompleted.html.twig';
 
+        $tasks = 'ROLE_ADMIN' === $this->getUser()->getRoles()[0] ? $repo->findAll() : $repo->findBy(['user' => $this->getUser(), 'isDone' => $isDone]);
+
         return $this->render(
             $template,
             [
-                'tasks' => $repo->findBy([
-                    'user' => $this->getUser(),
-                    'isDone' => $isDone,
-                ]),
+                'tasks' => $tasks,
+                'user' => $this->getUser(),
             ]
         );
     }
@@ -74,6 +75,8 @@ class TaskController extends AbstractController
      * @param Task          $task
      * @param Request       $request
      * @param ObjectManager $manager
+     *
+     * @Security("is_granted('ROLE_USER') and user.getId() === task.getUser().getId()")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
@@ -106,6 +109,8 @@ class TaskController extends AbstractController
      * @param ObjectManager       $manager
      * @param TranslatorInterface $translator
      *
+     * @Security("is_granted('ROLE_USER') and user.getId() === task.getUser().getId()")
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function toggleTask(Task $task, ObjectManager $manager, TranslatorInterface $translator): RedirectResponse
@@ -129,6 +134,8 @@ class TaskController extends AbstractController
      *
      * @param Task          $task
      * @param ObjectManager $manager
+     *
+     * @Security("(is_granted('ROLE_USER') and user.getId() === task.getUser().getId()) or (is_granted('ROLE_ADMIN') and task.getUser().getRoles()[0] === 'ROLE_ANONYMOUS')")
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

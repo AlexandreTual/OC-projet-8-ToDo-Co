@@ -5,7 +5,6 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -59,7 +58,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getId(): ?int
     {
@@ -67,7 +66,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getUsername(): ?string
     {
@@ -76,6 +75,7 @@ class User implements UserInterface
 
     /**
      * @param string $username
+     *
      * @return User
      */
     public function setUsername(string $username): self
@@ -86,7 +86,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getPassword(): ?string
     {
@@ -95,6 +95,7 @@ class User implements UserInterface
 
     /**
      * @param string $password
+     *
      * @return User
      */
     public function setPassword(string $password): self
@@ -105,7 +106,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getEmail(): ?string
     {
@@ -114,6 +115,7 @@ class User implements UserInterface
 
     /**
      * @param string $email
+     *
      * @return User
      */
     public function setEmail(string $email): self
@@ -132,7 +134,7 @@ class User implements UserInterface
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getSalt()
     {
@@ -141,8 +143,6 @@ class User implements UserInterface
 
     /**
      * @codeCoverageIgnore
-     *
-     * @return null
      */
     public function eraseCredentials()
     {
@@ -159,6 +159,7 @@ class User implements UserInterface
 
     /**
      * @param Task $task
+     *
      * @return User
      */
     public function addTask(Task $task): self
@@ -173,6 +174,7 @@ class User implements UserInterface
 
     /**
      * @param Task $task
+     *
      * @return User
      */
     public function removeTask(Task $task): self
@@ -190,6 +192,7 @@ class User implements UserInterface
 
     /**
      * @param $roles
+     *
      * @return User
      */
     public function setRoles($roles): self

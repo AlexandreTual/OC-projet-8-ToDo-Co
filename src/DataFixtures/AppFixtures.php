@@ -28,19 +28,19 @@ class AppFixtures extends Fixture
         $manager->persist($anonymous);
 
         // creation user [ROLE_ADMIN]
-        $admin =$this->createUser('admin');
+        $admin = $this->createUser('admin');
         $manager->persist($admin);
 
         // creation task
-        for ($i=0; $i< 10; $i++) {
+        for ($i = 0; $i < 10; ++$i) {
             $manager->persist($this->createTask($user, $i));
         }
 
-        for ($j=0; $j< 100; $j++) {
+        for ($j = 0; $j < 100; ++$j) {
             $manager->persist($this->createTask($anonymous, $j));
         }
 
-        for ($k=0; $k< 10; $k++) {
+        for ($k = 0; $k < 10; ++$k) {
             $manager->persist($this->createTask($admin, $k));
         }
 
@@ -50,6 +50,8 @@ class AppFixtures extends Fixture
         $manager->persist($this->createTask($user, 0, 'taskForEdit'));
         // creation task pour tester toggle
         $manager->persist($this->createTask($user, 0, 'taskForToggle'));
+        // creation task by anonymous pour suppression par admin
+        $manager->persist($this->createTask($anonymous, 0, 'taskForDeleteByAdmin'));
 
         $manager->flush();
     }
@@ -57,6 +59,7 @@ class AppFixtures extends Fixture
     /**
      * @param string $type
      * @param string $password
+     *
      * @return User
      */
     public function createUser(string $type, string $password = 'password'): User
@@ -67,14 +70,16 @@ class AppFixtures extends Fixture
             ->setUsername($type)
             ->setPassword($this->encoder->encodePassword($user, $password))
             ->setEmail($type.'@todo-co.com')
-            ->setRoles('ROLE_'.strtoupper($type));
+            ->setRoles('ROLE_'.strtoupper($type))
+        ;
     }
 
     /**
-     * @param User $user
-     * @param int $isDone
+     * @param User   $user
+     * @param int    $isDone
      * @param string $title
      * @param string $content
+     *
      * @return Task
      */
     public function createTask(User $user, int $isDone, string $title = 'une tâche', string $content = 'un contenu'): Task
@@ -85,7 +90,8 @@ class AppFixtures extends Fixture
             ->setTitle($title)
             ->setContent($content)
             ->setUser($user)
-            ->toggle($isDone%2 == 1?'1':'0');
+            ->toggle(1 == $isDone % 2 ? '1' : '0')
+        ;
 
         return $task;
     }
