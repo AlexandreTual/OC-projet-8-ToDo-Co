@@ -8,24 +8,19 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class UserTypeTest extends TypeTestCase
 {
-    protected function getExtensions()
-    {
-        $validator = Validation::createValidator();
-
-        return [
-            new ValidatorExtension($validator),
-        ];
-    }
-
     public function testForm()
     {
         $formData = [
             'username' => 'Alexandre',
             'password' => [
-              'first' => 'password',
-              'second' => 'password',
+                'first' => 'password',
+                'second' => 'password',
             ],
             'email' => 'tual.alexandre@gmail.com',
             'roles' => 'ROLE_USER',
@@ -38,8 +33,8 @@ class UserTypeTest extends TypeTestCase
             ->setUsername('Alexandre')
             ->setPassword('password')
             ->setEmail('tual.alexandre@gmail.com')
-            ->setRoles('ROLE_USER');
-
+            ->setRoles('ROLE_USER')
+        ;
 
         $form = $this->factory->create(UserType::class, $objectToCompare);
         $form->submit($formData);
@@ -56,5 +51,14 @@ class UserTypeTest extends TypeTestCase
         foreach (array_keys($formData) as $key) {
             $this->assertArrayHasKey($key, $children);
         }
+    }
+
+    protected function getExtensions()
+    {
+        $validator = Validation::createValidator();
+
+        return [
+            new ValidatorExtension($validator),
+        ];
     }
 }
