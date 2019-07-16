@@ -5,13 +5,17 @@ namespace tests\Form;
 use App\Form\LoginType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class LoginTypeTest extends TypeTestCase
 {
     public function testForm()
     {
         $formData = [
-          '_username' => 'alex',
-          '_password' => 'password',
+            '_username' => 'alex',
+            '_password' => 'password',
         ];
 
         $form = $this->factory->create(LoginType::class);

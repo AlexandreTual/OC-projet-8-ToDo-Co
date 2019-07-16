@@ -9,6 +9,10 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class UserControllerTest extends WebTestCase
 {
     /**
@@ -19,13 +23,6 @@ class UserControllerTest extends WebTestCase
     protected function setUp()
     {
         $this->client = self::createClient();
-    }
-
-    private function getContainer()
-    {
-        self::bootKernel();
-        // gets the special container that allows fetching private services
-        return self::$container;
     }
 
     public function logIn($userType, $password)
@@ -90,7 +87,12 @@ class UserControllerTest extends WebTestCase
         self::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
     }
 
-
+    private function getContainer()
+    {
+        self::bootKernel();
+        // gets the special container that allows fetching private services
+        return self::$container;
+    }
 
     /*public function testCreationUser()
     {
@@ -115,5 +117,4 @@ class UserControllerTest extends WebTestCase
 
         self::assertSame(1,$crawler->filter('html:contains("L\'utilisateur a bien été ajouté")')->html());
     }*/
-
 }

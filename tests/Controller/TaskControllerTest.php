@@ -112,7 +112,7 @@ class TaskControllerTest extends WebTestCase
         // présence du boutton de modification
         self::assertContains('/tasks/'.$task->getId().'/edit', $crawler->filter('a')->extract(['href']));
 
-        $crawler =$this->client->request('GET', '/tasks/'.$task->getId().'/edit');
+        $crawler = $this->client->request('GET', '/tasks/'.$task->getId().'/edit');
 
         $form = $crawler->selectButton('Modifier la tâche')->form();
         $form['task[title]'] = 'editedTask';

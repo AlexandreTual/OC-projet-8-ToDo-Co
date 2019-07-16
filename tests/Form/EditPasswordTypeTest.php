@@ -8,31 +8,27 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class EditPasswordTypeTest extends TypeTestCase
 {
-    protected function getExtensions()
-    {
-        $validator = Validation::createValidator();
-
-        return [
-            new ValidatorExtension($validator),
-        ];
-    }
-
     public function testForm()
     {
         $formData = [
             'password' => [
                 'first' => 'password',
                 'second' => 'password',
-            ]
+            ],
         ];
 
         $object = new User();
         $objectToCompare = new User();
 
         $object
-            ->setPassword('password');
+            ->setPassword('password')
+        ;
 
         $form = $this->factory->create(EditPasswordType::class, $objectToCompare);
         $form->submit($formData);
@@ -49,5 +45,14 @@ class EditPasswordTypeTest extends TypeTestCase
         foreach (array_keys($formData) as $key) {
             $this->assertArrayHasKey($key, $children);
         }
+    }
+
+    protected function getExtensions()
+    {
+        $validator = Validation::createValidator();
+
+        return [
+            new ValidatorExtension($validator),
+        ];
     }
 }

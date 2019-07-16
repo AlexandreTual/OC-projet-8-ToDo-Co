@@ -6,6 +6,10 @@ use App\Entity\Task;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class TaskTest extends TestCase
 {
     public function testGettersAndSetters()
@@ -21,7 +25,8 @@ class TaskTest extends TestCase
             ->setTitle($titre)
             ->setContent($content)
             ->setCreatedAt($createdAt)
-            ->setUser($user);
+            ->setUser($user)
+        ;
 
         $this->assertEquals(null, $task->getId());
         $this->assertEquals($titre, $task->getTitle());
