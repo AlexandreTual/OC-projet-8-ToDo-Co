@@ -17,7 +17,8 @@ class LoginType extends AbstractType
     /**
      * LoginType constructor.
      *
-     * @param null $lasUsername
+     * @param null       $lasUsername
+     * @param null|mixed $lastUsername
      */
     public function __construct($lastUsername = null)
     {

@@ -25,6 +25,9 @@
                         </h4>
                         <h4>{{ task.title }}</h4>
                         <p>{{ task.content }}</p>
+                        {% if 'ROLE_ADMIN' == user.roles[0] %}
+                        <p>{{ 'page.list.tasks.author'|trans }}<strong>{{ task.user.username }}</strong></p>
+                        {% endif %}
                     </div>
                     <div>
                         <a href="{{ path('task_toggle', {'id' : task.id }) }}" class="btn btn-success btn-sm pull-right">

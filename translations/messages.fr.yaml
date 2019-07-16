@@ -61,4 +61,5 @@ word.login: Connexion
 incorrect password: Mot de passe incorrect
 form.login.username.label: Votre nom
 form.login.password.label: Mot de passe
+page.list.tasks.author: "Auteur : "
 

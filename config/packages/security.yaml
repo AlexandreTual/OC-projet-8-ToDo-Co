@@ -24,7 +24,7 @@ security:
                 path: logout
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
+        ROLE_ADMIN:       [ROLE_USER, ROLE_ANONYMOUS]
 
     access_control:
         - { path: ^/users/create, roles: IS_AUTHENTICATED_ANONYMOUSLY }
