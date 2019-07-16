@@ -18,8 +18,7 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
- * Class LoginAuthenticator
- * @package App\Security
+ * Class LoginAuthenticator.
  *
  * @codeCoverageIgnore
  */

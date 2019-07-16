@@ -47,6 +47,7 @@ class Task
 
     /**
      * Task constructor.
+     *
      * @throws \Exception
      */
     public function __construct()
@@ -56,7 +57,7 @@ class Task
     }
 
     /**
-     * @return int|null
+     * @return null|int
      */
     public function getId(): ?int
     {
@@ -64,7 +65,7 @@ class Task
     }
 
     /**
-     * @return \DateTimeInterface|null
+     * @return null|\DateTimeInterface
      */
     public function getCreatedAt(): ?\DateTimeInterface
     {
@@ -73,6 +74,7 @@ class Task
 
     /**
      * @param \DateTimeInterface $createdAt
+     *
      * @return Task
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): self
@@ -83,7 +85,7 @@ class Task
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getTitle(): ?string
     {
@@ -92,6 +94,7 @@ class Task
 
     /**
      * @param string $title
+     *
      * @return Task
      */
     public function setTitle(string $title): self
@@ -102,7 +105,7 @@ class Task
     }
 
     /**
-     * @return string|null
+     * @return null|string
      */
     public function getContent(): ?string
     {
@@ -111,6 +114,7 @@ class Task
 
     /**
      * @param string $content
+     *
      * @return Task
      */
     public function setContent(string $content): self
@@ -137,7 +141,7 @@ class Task
     }
 
     /**
-     * @return User|null
+     * @return null|User
      */
     public function getUser(): ?User
     {
@@ -145,7 +149,8 @@ class Task
     }
 
     /**
-     * @param User|null $user
+     * @param null|User $user
+     *
      * @return Task
      */
     public function setUser(?User $user): self

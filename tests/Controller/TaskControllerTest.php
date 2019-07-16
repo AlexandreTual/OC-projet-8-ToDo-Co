@@ -7,6 +7,7 @@ use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\BrowserKit\Cookie;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
 /**
@@ -81,6 +82,31 @@ class TaskControllerTest extends WebTestCase
         self::assertSame(1, $crawler->filter('html:contains("TaskCreated")')->count());
         // présence du message alert
         self::assertSame(1, $crawler->filter('html:contains("La tâche a été bien été ajoutée")')->count());
+    }
+
+    public function testDeleteTaskAnonymousByAdmin()
+    {
+        $this->logIn('admin', 'password');
+
+        $task = $this->getContainer()->get('doctrine')->getRepository(Task::class)->findOneByTitle('taskForDeleteByAdmin');
+
+        $this->client->request('GET', '/tasks/'.$task->getId().'/delete');
+        $crawler = $this->client->followRedirect();
+
+        self::assertEquals(200, $this->client->getResponse()->getStatusCode());
+        self::assertSame(0, $crawler->filter('html:contains("taskForDeleteByAdmin")')->count());
+        self::assertSame(1, $crawler->filter('html:contains("La tâche a bien été supprimée.")')->count());
+    }
+
+    public function testErrorDeleteTaskUserByAdmin()
+    {
+        $this->logIn('admin', 'password');
+
+        $task = $this->getContainer()->get('doctrine')->getRepository(Task::class)->findOneByTitle('taskForDelete');
+
+        $this->client->request('GET', '/tasks/'.$task->getId().'/delete');
+
+        self::assertEquals(Response::HTTP_FORBIDDEN, $this->client->getResponse()->getStatusCode());
     }
 
     public function testDeleteTask()
