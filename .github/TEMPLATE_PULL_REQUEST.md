@@ -30,7 +30,7 @@ lancer les tests nommés TestA et TestB
 - [] Mon code suit les directives de style du projet
 - [] J'ai effectué une auto-évaluation de mon propre code
 - [] J'ai commenté mon code, en particulier dans les zones difficiles à comprendre
-- [] j'ai apporté les modifications correspondantes à la documentation
+- [] J'ai apporté les modifications correspondantes à la documentation
 - [] Mes modifications ne génèrent pas d'erreur ou d'avertissment dans le code existant.
 - [] J'ai ajouté des tests qui prouvent que mon correctif est efficace ou que ma fonctionnalité fonctionne.
 - [] Les tests unitaires nouveaux et existants réussissent localement avec mes modifications
