@@ -22,5 +22,5 @@
 
 ###> php-cs-fixer ###
 .php_cs.cache
-web/
+web/test.html
 ###> php-cs-fixer ###
