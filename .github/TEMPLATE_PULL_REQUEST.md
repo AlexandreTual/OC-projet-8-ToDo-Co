@@ -1,6 +1,6 @@
 Veuillez inclure un résumé de la modification et le problème résolu. Veuillez également inclure le but et le contexte. Répertoriez toutes les dépendances requises pour cette modification.
 
-Corrections # (problème)
+Corrections (numéro issue #***)
 
 ### Type de changement
 
