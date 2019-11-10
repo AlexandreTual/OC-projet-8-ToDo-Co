@@ -5,10 +5,6 @@ namespace tests\Form;
 use App\Form\LoginType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-/**
- * @internal
- * @coversNothing
- */
 class LoginTypeTest extends TypeTestCase
 {
     public function testForm()

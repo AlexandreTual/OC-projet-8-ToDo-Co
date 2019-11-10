@@ -8,9 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
-/**
- * @codeCoverageIgnore
- */
 class SecurityController extends AbstractController
 {
     /**
@@ -40,6 +37,7 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="logout")
+     * @codeCoverageIgnore
      */
     public function logout()
     {

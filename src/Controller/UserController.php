@@ -19,9 +19,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
-/**
- * @codeCoverageIgnore
- */
 class UserController extends AbstractController
 {
     /**
@@ -91,6 +88,7 @@ class UserController extends AbstractController
 
             $this->addFlash('success', 'message.user.update.success');
 
+            /** @codeCoverageIgnore */
             return $this->redirectToRoute('user_list');
         }
 
@@ -106,6 +104,8 @@ class UserController extends AbstractController
      * @param ObjectManager                $manager
      *
      * @Security("is_granted('ROLE_ADMIN') or (user.GetId() === userForEdit.getId())")
+     *
+     * @codeCoverageIgnore
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -141,6 +141,8 @@ class UserController extends AbstractController
      * @param User                $user
      * @param ObjectManager       $manager
      * @param TranslatorInterface $translator
+     *
+     * @codeCoverageIgnore
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */

@@ -9,10 +9,6 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-/**
- * @internal
- * @coversNothing
- */
 class UserControllerTest extends WebTestCase
 {
     /**
@@ -69,19 +65,17 @@ class UserControllerTest extends WebTestCase
         self::assertSame(Response::HTTP_FORBIDDEN, $this->client->getResponse()->getStatusCode());
     }
 
-    public function testEditUser()
+    public function testEditUserWithoutAuth()
     {
         $user = $this->getContainer()->get('doctrine')->getRepository(User::class)->findOneByUsername('user');
         // Without user Auth
         $this->client->request('GET', '/users/'.$user->getId().'/edit');
         self::assertSame(Response::HTTP_FOUND, $this->client->getResponse()->getStatusCode());
 
-        // With user auth
         $this->logIn('user', 'password');
         $this->client->request('GET', '/users/'.$user->getId().'/edit');
         self::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
 
-        // with admin
         $this->logIn('admin', 'password');
         $this->client->request('GET', '/users/'.$user->getId().'/edit');
         self::assertSame(Response::HTTP_OK, $this->client->getResponse()->getStatusCode());
