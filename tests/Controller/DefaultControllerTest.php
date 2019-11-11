@@ -8,10 +8,6 @@ use Symfony\Component\BrowserKit\Cookie;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 
-/**
- * @internal
- * @coversNothing
- */
 class DefaultControllerTest extends WebTestCase
 {
     /**

@@ -5,10 +5,6 @@ namespace tests\Controller;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-/**
- * @internal
- * @coversNothing
- */
 class SecurityControllerTest extends WebTestCase
 {
     /**

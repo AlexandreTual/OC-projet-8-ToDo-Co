@@ -8,10 +8,6 @@ use Symfony\Component\Form\Extension\Validator\ValidatorExtension;
 use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Validator\Validation;
 
-/**
- * @internal
- * @coversNothing
- */
 class EditPasswordTypeTest extends TypeTestCase
 {
     public function testForm()

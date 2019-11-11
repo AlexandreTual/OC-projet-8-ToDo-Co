@@ -6,10 +6,6 @@ use App\Entity\Task;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @internal
- * @coversNothing
- */
 class UserTest extends TestCase
 {
     public function testGettersAndSetters()

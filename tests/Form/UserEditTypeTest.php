@@ -6,10 +6,6 @@ use App\Entity\User;
 use App\Form\UserEditType;
 use Symfony\Component\Form\Test\TypeTestCase;
 
-/**
- * @internal
- * @coversNothing
- */
 class UserEditTypeTest extends TypeTestCase
 {
     public function testForm()
